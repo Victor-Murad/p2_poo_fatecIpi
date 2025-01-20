@@ -1,10 +1,15 @@
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@Setter
+@RequiredArgsConstructor
 public class Musica{
     private int codigo;
-    private String titulo;
-    private int avaliacao;
+    private final String titulo;
+    private final int avaliacao;
+
+    @Override
+    public String toString(){
+        return String.format("A música se chama %s. A sua nota é %d.", titulo, avaliacao);
+    }
 }

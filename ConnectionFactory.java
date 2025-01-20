@@ -8,7 +8,8 @@ public class ConnectionFactory{
     static{
         try{
             properties = new Properties();
-            properties.load(new FileInputStream(new File("conf.properties")));
+            var raiz = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+            properties.load(new FileInputStream(new File(raiz + "conf.properties")));
         }
         catch(Exception e){
             System.exit(1);
