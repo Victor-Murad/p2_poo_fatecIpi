@@ -24,16 +24,27 @@ public class GerenciaMusicas {
             case 2: {
               String titulo = showInputDialog("Titulo?");
               int nota = parseInt(showInputDialog("Nota?"));
+              if(!musicaDAO.existeMusica(titulo)){
+                showMessageDialog(null, "Música não encontrada!");
+                break;
+              }
               musicaDAO.avaliar(new Musica(titulo, nota));
               showMessageDialog(null, "Música avaliada!!");
               break;
             }
             case 3: {
-              musicaDAO.listar();
+              var musicas = musicaDAO.listar();
+              for (Musica musica: musicas){
+                JOptionPane.showMessageDialog(null, musica);
+              }
               break;
             }
             case 4: {
               String titulo = showInputDialog("Digite o título da música que será excluída.");
+              if(!musicaDAO.existeMusica(titulo)){
+                showMessageDialog(null, "Música não encontrada!");
+                break;
+              }
               musicaDAO.desativar(titulo);
               JOptionPane.showMessageDialog(null, "Música " + titulo + " excluída com sucesso!");
               break;
